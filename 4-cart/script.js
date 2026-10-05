@@ -70,14 +70,13 @@ function removeItem(id) {
 }
 
 function applyPromo() {
-  if ((promoInput.value = "SALE10")) {
-    discount = 0.1;
-  }
+  const value = promoInput.value;
+  value === "SALE10" ? discount = 0.1 : discount = 0;
   renderCart();
 }
 
 function clearCart() {
-  cart.splice(0, 1);
+  cart = [];
   renderCart();
 }
 
