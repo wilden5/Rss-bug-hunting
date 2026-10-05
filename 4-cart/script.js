@@ -24,7 +24,9 @@ function renderProducts() {
     card.innerHTML = `<h3>${p.name}</h3><p>${p.price} ₽</p>`;
     const btn = document.createElement("button");
     btn.textContent = "В корзину";
-    btn.addEventListener("click", addToCart);
+    btn.addEventListener("click", () => {
+      addToCart(p.id);
+    });
     card.appendChild(btn);
     productsEl.appendChild(card);
   });
@@ -35,6 +37,15 @@ function addToCart(id) {
   if (!product) {
     return;
   }
+
+  const cartItem = cart.find((item) => item.id === id);
+
+  if (cartItem) {
+    cartItem.qty += 1;
+    renderCart();
+    return;
+  }
+
   cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
   renderCart();
 }
