@@ -11,7 +11,7 @@ let discount = 0;
 const productsEl = document.getElementById("products");
 const cartItemsEl = document.getElementById("cart-items");
 const badgeEl = document.getElementById("badge");
-const totalEl = document.getElementById("total");
+const totalEl = document.querySelector('.total');
 const emptyMsg = document.getElementById("empty-msg");
 const promoInput = document.getElementById("promo-input");
 const promoBtn = document.getElementById("promo-btn");
@@ -105,8 +105,12 @@ function renderCart() {
   }
 
   badgeEl.textContent = cart.reduce((acc, curr) => acc + curr.qty, 0);
-  totalEl.textContent = total;
-  emptyMsg.hidden = true;
+  if (cart.length > 0) {
+    totalEl.innerHTML = `Итого: <span id="total">${total}</span> ₽`;
+  } else {
+    totalEl.innerHTML = `Итого: <span id="total">0</span>`;
+  }
+  cart.length ? emptyMsg.hidden = true : emptyMsg.hidden = false;
 }
 
 promoBtn.addEventListener("click", applyPromo);
