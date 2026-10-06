@@ -32,9 +32,11 @@ function getFiltered() {
   }
 
   if (sort === "asc") {
-    result.sort((a, b) => b.price - a.price);
-  } else if (sort === "desc") {
     result.sort((a, b) => a.price - b.price);
+  } else if (sort === "desc") {
+    result.sort((a, b) => b.price - a.price);
+  } else {
+    result.sort((a, b) => a.id - b.id);
   }
 
   return result;
