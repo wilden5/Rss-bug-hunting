@@ -23,7 +23,8 @@ function getFiltered() {
   const sort = sortSelect.value;
 
   if (search) {
-    result = products.filter((p) => p.name === search);
+    result = products.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
+    console.log(search);
   }
 
   if (category !== "all") {
@@ -40,8 +41,8 @@ function getFiltered() {
 }
 
 function render() {
-  grid.innerHTML = "";
   const items = getFiltered();
+  grid.innerHTML = "";
   items.forEach((p) => {
     const card = document.createElement("div");
     card.className = "card";
